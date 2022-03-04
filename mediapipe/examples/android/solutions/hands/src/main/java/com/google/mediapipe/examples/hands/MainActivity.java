@@ -46,6 +46,7 @@ import java.io.InputStream;
 
 /**
  * Main activity of MediaPipe Hands app.
+ * https://google.github.io/mediapipe/solutions/hands.html
  */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
