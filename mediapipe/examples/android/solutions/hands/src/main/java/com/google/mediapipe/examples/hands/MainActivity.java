@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -74,11 +75,13 @@ public class MainActivity extends AppCompatActivity {
     private CameraInput cameraInput;
 
     private SolutionGlSurfaceView<HandsResult> glSurfaceView;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tv=findViewById(R.id.tv);
         setupStaticImageDemoUiComponents();
         setupVideoDemoUiComponents();
         setupLiveDemoUiComponents();
@@ -375,6 +378,10 @@ public class MainActivity extends AppCompatActivity {
                     String.format(
                             "MediaPipe Hand wrist normalized coordinates (value range: [0, 1]): x=%f, y=%f",
                             wristLandmark.getX(), wristLandmark.getY()));
+            tv.post(()->{
+
+                tv.setText("x:"+wristLandmark.getX()+",y:"+wristLandmark.getY());
+            });
         }
         if (result.multiHandWorldLandmarks().isEmpty()) {
             return;
